@@ -1,19 +1,10 @@
 package com.tfp.artifully.core;
 
-import com.mojang.logging.LogUtils;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import com.tfp.artifully.core.registry.BlocksRegistry;
+import com.tfp.artifully.core.registry.ArtiFullyBlocksRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,15 +18,12 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ArtiFullyMod.MODID)
 public class ArtiFullyMod {
-    public static final String MODID = "artifully";
+    public static final String MODID = "${mod_id}";
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MODID);
 
     public ArtiFullyMod() {
@@ -51,7 +39,7 @@ public class ArtiFullyMod {
         //event_bus.addListener(this::dataSetup);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            BlocksRegistry.setupTabEditors();
+            ArtiFullyBlocksRegistry.setupTabEditors();
         });
         context.registerConfig(ModConfig.Type.COMMON, ArtiFullyConfig.COMMON_SPEC);
 

@@ -92,6 +92,10 @@ dependencies {
     implementation fg.deobf("com.teamabnormals:woodworks:${minecraft_version}-${woodworks_version}")
     implementation fg.deobf("com.teamabnormals:boatload:${minecraft_version}-${boatload_version}")
 
+    implementation fg.deobf("curse.maven:quark-243121:6427817")
+    implementation fg.deobf("curse.maven:zeta-968868:6432578")
+    implementation fg.deobf("curse.maven:caverns-and-chasms-438005:7935118")
+
     //compileOnly is used when you want to use a mod as a library, but the mod is not required to run the game, and only needed at compile time.
     //compileOnly fg.deobf("maven.modrinth:what-are-you-voting-for-2023:aGgzILtB")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
