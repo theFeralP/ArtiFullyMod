@@ -5,12 +5,20 @@ import com.teamabnormals.blueprint.core.util.item.CreativeModeTabContentsPopulat
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import com.tfp.artifully.common.blocks.CeramicLanternBlock;
 import com.tfp.artifully.core.ArtiFullyMod;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
+
+import static net.minecraft.world.item.CreativeModeTabs.*;
 
 
 public class ArtiFullyBlocksRegistry {
@@ -43,8 +51,9 @@ public class ArtiFullyBlocksRegistry {
 
     }
 
-    /*public static void setupTabEditors() {
+    public static void setupTabEditors() {
         CreativeModeTabContentsPopulator.mod(ArtiFullyMod.MODID)
-                .tab(FUNCTIONAL)
-     }*/
+                .tab(FUNCTIONAL_BLOCKS)
+                .addItemsBefore(Ingredient.of(Blocks.CHAIN), CERAMIC_LANTERN, CERAMIC_SOUL_LANTERN, CERAMIC_ENDER_LANTERN, CERAMIC_CUPRIC_LANTERN);
+     }
 }
