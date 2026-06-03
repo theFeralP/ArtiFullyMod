@@ -50,6 +50,6 @@ public class ArtiFullyBlocksRegistry {
     }
 
     static {
-        BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "skinnedlanterns");
+        BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ArtiFullyMod.MODID);
     }
 }

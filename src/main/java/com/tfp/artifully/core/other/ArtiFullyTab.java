@@ -2,6 +2,7 @@ package com.tfp.artifully.core.other;
 
 import com.google.common.collect.Iterables;
 import com.tfp.artifully.core.ArtiFullyMod;
+import com.tfp.artifully.integrations.ArtifullyCompat;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,7 +30,7 @@ public class ArtiFullyTab {
     static {
         CREATIVE_MODE_TAB_DEFERRED_REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ArtiFullyMod.MODID);
         SKINNED_LANTERNS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register(ArtiFullyMod.MODID+"tab", () -> CreativeModeTab.builder().icon(ArtiFullyTab::getIcon).title(Component.translatable(ArtiFullyMod.MODID+"tab")).displayItems((params, out) -> RegistryHandler.ITEMS.getEntries().forEach((item) -> {
-            if (LanternConfig.isEnabled(item.getId().getPath())) {
+            if (ArtifullyCompat.isEnabled(item.getId().getPath())) {
                 out.accept((ItemLike)item.get());
             }
 

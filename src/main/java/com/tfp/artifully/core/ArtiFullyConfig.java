@@ -1,5 +1,8 @@
 package com.tfp.artifully.core;
 
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
+import com.tfp.artifully.integrations.ArtifullyCompat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -9,26 +12,24 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.io.File;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Forge's config APIs
-@Mod.EventBusSubscriber(modid = ArtiFullyMod.MODID)
-public class ArtiFullyConfig {
-    public static class Common {
-        Common(ForgeConfigSpec.Builder builder) {
-            builder.push("common");
-            builder.pop();
-        }
+@Mod.EventBusSubscriber
+public class ArtifullyConfig {
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec CONFIG;
+
+    public ArtifullyConfig() {
     }
-    public static final ForgeConfigSpec COMMON_SPEC;
-    public static final Common COMMON;
+
+    public static void loadConfig(String path) {
+        CommentedFileConfig file = (CommentedFileConfig)CommentedFileConfig.builder(new File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build();
+        file.load();
+        CONFIG.setConfig(file);
+    }
 
     static {
-        final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
-        COMMON_SPEC = specPair.getRight();
-        COMMON = specPair.getLeft();
+        ArtifullyCompat.init(BUILDER);
+        CONFIG = BUILDER.build();
     }
 }
